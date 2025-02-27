@@ -6,7 +6,8 @@ class CityRepository {
             const city = await City.create({ name });
             return city; // Return the created city
         } catch (error) {
-            throw error; // No need to wrap error in an object
+            console.log("Something went wrong in the repository layer");
+            throw {error}; // No need to wrap error in an object
         }
     }
     ///these functions are async functions because the JS will be returning us a promsie as JS doesnt know directly how to connect to a DB and update it.
@@ -16,9 +17,26 @@ class CityRepository {
                 id : cityid
             }  });
         } catch (error) {
-            throw error;
+            console.log("Something went wrong in the repository layer");
+            throw {error};
         }
     } 
+    async updateCity( cityid, data ){
+        try {
+            
+        } catch (error) {
+            Console.log("Something went wrong in the repository layer");
+            throw {error};
+        }
+    }
+    async getCity(){
+        try {
+            const city =  await City.findByPk(cityid); //used to find something by a singular id in the sequelize package
+            return City;
+        } catch (error) {
+            console.log("Something went wrong in the repository layer");
+        }
+    }
 }
 
 module.exports = CityRepository;
