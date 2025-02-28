@@ -23,7 +23,12 @@ class CityRepository {
     } 
     async updateCity( cityid, data ){
         try {
-            
+            const city =  await City.update(data,{
+                where: {
+                    id: cityid
+                }
+            })
+            return city;
         } catch (error) {
             Console.log("Something went wrong in the repository layer");
             throw {error};
@@ -32,7 +37,7 @@ class CityRepository {
     async getCity(){
         try {
             const city =  await City.findByPk(cityid); //used to find something by a singular id in the sequelize package
-            return City;
+            return city;
         } catch (error) {
             console.log("Something went wrong in the repository layer");
         }
